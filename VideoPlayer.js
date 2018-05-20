@@ -30,6 +30,7 @@ export default class VideoPlayer extends Component {
         muted:                          false,
         title:                          '',
         rate:                           1,
+        landscape:                      false,
     };
 
     constructor( props ) {
@@ -169,8 +170,12 @@ export default class VideoPlayer extends Component {
     _onLoadStart() {
         let state = this.state;
         state.loading = true;
-        //this.loadAnimation();
+        this.loadAnimation();
         this.setState( state );
+
+        if ( state.showControls ) {
+            this.setControlTimeout();
+        }
 
         if ( typeof this.props.onLoadStart === 'function' ) {
             this.props.onLoadStart(...arguments);
@@ -190,10 +195,6 @@ export default class VideoPlayer extends Component {
         state.duration = data.duration;
         state.loading = false;
         this.setState( state );
-
-        if ( state.showControls ) {
-            this.setControlTimeout();
-        }
 
         if ( typeof this.props.onLoad === 'function' ) {
             this.props.onLoad(...arguments);
@@ -728,7 +729,7 @@ export default class VideoPlayer extends Component {
              * When panning, update the seekbar position, duh.
              */
             onPanResponderMove: ( evt, gestureState ) => {
-                const position = this.state.seekerOffset + gestureState.dx;
+                const position = this.state.seekerOffset + (this.props.landscape ? gestureState.dy : gestureState.dx);
                 this.setSeekerPosition( position );
             },
 
@@ -1061,7 +1062,6 @@ export default class VideoPlayer extends Component {
      * Show loading icon
      */
     renderLoader() {
-        return null;
         if ( this.state.loading ) {
             return (
                 <View style={ styles.loader.container }>
