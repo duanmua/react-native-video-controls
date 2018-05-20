@@ -169,7 +169,7 @@ export default class VideoPlayer extends Component {
     _onLoadStart() {
         let state = this.state;
         state.loading = true;
-        this.loadAnimation();
+        //this.loadAnimation();
         this.setState( state );
 
         if ( typeof this.props.onLoadStart === 'function' ) {
@@ -522,7 +522,7 @@ export default class VideoPlayer extends Component {
      */
     setSeekerPosition( position = 0 ) {
         let state = this.state;
-        position = this.constrainToSeekerMinMax( position );
+        //position = this.constrainToSeekerMinMax( position );
 
         state.seekerFillWidth = position;
         state.seekerPosition = position;
