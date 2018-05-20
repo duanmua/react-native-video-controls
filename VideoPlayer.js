@@ -1061,6 +1061,7 @@ export default class VideoPlayer extends Component {
      * Show loading icon
      */
     renderLoader() {
+        return null;
         if ( this.state.loading ) {
             return (
                 <View style={ styles.loader.container }>
