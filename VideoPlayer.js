@@ -1062,7 +1062,6 @@ export default class VideoPlayer extends Component {
      * Show loading icon
      */
     renderLoader() {
-        return null;
         if ( this.state.loading ) {
             return (
                 <View style={ styles.loader.container }>
@@ -1126,9 +1125,9 @@ export default class VideoPlayer extends Component {
 
                         source={ this.props.source }
                     />
+                    { this.renderLoader() }
                     { this.renderError() }
                     { this.renderTopControls() }
-                    { this.renderLoader() }
                     { this.renderBottomControls() }
                 </View>
             </TouchableWithoutFeedback>
