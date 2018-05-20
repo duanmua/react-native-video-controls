@@ -1080,6 +1080,7 @@ export default class VideoPlayer extends Component {
     }
 
     renderError() {
+        return null;
         if ( this.state.error ) {
             return (
                 <View style={ styles.error.container }>
